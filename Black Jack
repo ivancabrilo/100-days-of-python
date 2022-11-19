@@ -1,0 +1,111 @@
+''' BLACK JACK '''
+    
+logo = """
+.------.            _     _            _    _            _    
+|A_  _ |.          | |   | |          | |  (_)          | |   
+|( \/ ).-----.     | |__ | | __ _  ___| | ___  __ _  ___| | __
+| \  /|K /\  |     | '_ \| |/ _` |/ __| |/ / |/ _` |/ __| |/ /
+|  \/ | /  \ |     | |_) | | (_| | (__|   <| | (_| | (__|   < 
+`-----| \  / |     |_.__/|_|\__,_|\___|_|\_\ |\__,_|\___|_|\_\\
+      |  \/ K|                            _/ |                
+      `------'                           |__/           
+"""
+
+print(logo)
+import random
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+my_cards = []
+dealers_cards = []
+def another_card():
+    random_card = random.choice(cards)
+    return random_card
+
+for me in range(2):
+    my_cards.append(another_card())
+
+for dilera in range(1):
+    dealers_cards.append(another_card())
+
+def my_sum():
+    total = sum(my_cards)
+    return total
+
+def deal_sum():
+    total_deal = sum(dealers_cards)
+    return total_deal
+
+def score_track():
+    print(f'Your cards: {my_cards}, current score: {my_sum()} ')
+    print(f"Dealers cards are {dealers_cards}, current score: {deal_sum()} ")
+
+
+def defeat():
+    if deal_sum() > my_sum() and deal_sum() <= 21:
+        print(f'Your cards: {my_cards}, current score: {my_sum()} ')
+        print(f"Dealers cards are {dealers_cards}, current score: {deal_sum()} ")
+        print("You lost")
+
+
+def draw():
+    if deal_sum() == my_sum():
+        print(f'Your cards: {my_cards}, and score: {my_sum()} ')
+        print(f"Dealers cards are {dealers_cards}, and score: {deal_sum()} ")
+        print("It'a draw")
+
+
+def win():
+    if deal_sum() < my_sum():
+        print(f'Your cards: {my_cards}, and score: {my_sum()} ')
+        print(f"Dealers cards are {dealers_cards}, and score: {deal_sum()} ")
+        print("You won")
+
+
+score_track()
+game_on = True
+while game_on:
+    if my_sum() < 21:
+        over21 = False
+
+        while not over21:
+            next_card = input("Type 'y' to get another card, type 'n' to pass: ").lower()
+
+            if next_card == "y":
+                my_cards.append(another_card())
+                score_track()
+
+                if 11 in my_cards and my_sum > 21:
+                    my_cards.remove(11)
+                    my_cards.append(1)
+
+                elif my_sum() > 21:
+                    over21 = True
+                    print("lost")
+
+            elif next_card == "n":
+                over21 = True
+                score_track()
+
+                if deal_sum() < 17:
+
+                    under17 = True
+                    while under17:
+                        dealers_cards.append(another_card())
+                        deal_sum()
+
+                        if deal_sum() >= 17:
+                            if 11 in dealers_cards and deal_sum() > 21:
+                                dealers_cards.remove(11)
+                                dealers_cards.append(1)
+                            elif deal_sum() >21:
+                                print("won")
+
+                            under17 = False
+
+
+                game_on = False
+
+
+draw()
+win()
+defeat()
+
