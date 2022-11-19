@@ -1,0 +1,196 @@
+MENU = {
+    "espresso": {
+        "ingredients": {
+            "water": 50,
+            "coffee": 18,
+        },
+        "cost": 1.5,
+    },
+    "latte": {
+        "ingredients": {
+            "water": 200,
+            "milk": 150,
+            "coffee": 24,
+        },
+        "cost": 3,
+    },
+    "cappuccino": {
+        "ingredients": {
+            "water": 250,
+            "milk": 100,
+            "coffee": 24,
+        },
+        "cost": 2.5,
+    }
+}
+
+resources = {
+    "water": 1500,
+    "milk": 150,
+    "coffee": 300,
+}
+
+
+# choose_coffe = input("What coffe would you like? Espresso, Latte or Cappuccino? \n").lower()
+# if choose_coffe == "report":
+#     print(f'Coffe: {resources["coffee"]}g')
+#     print(f'Milk: {resources["milk"]}ml')
+#     print(f'Water: {resources["water"]}ml')
+#     print(f'Money: ${money_earned}')
+#     choose_coffe = input("What coffe would you like? Espresso, Latte or Cappuccino? \n").lower()
+    
+   
+# print("Please insert coins.")
+# quarters = int(input("How many quarters?: "))
+# dimes = int(input("How many dimes?: "))
+# nickles = int(input("How many nickles?: "))
+# pennies = int(input("How many pennies?: "))
+
+def calculator(q,d,n,p):
+    if choose_coffe == "espresso":
+        coffe_price = 1.5
+    elif choose_coffe == "latte":
+        coffe_price = 2.5
+    elif choose_coffe == "cappuccino":
+        coffe_price = 3
+
+    QUARTERS = q * 0.25
+    DIMES = d * 0.1
+    NICKLES = n * 0.05
+    PENNIES = p * 0.01
+    calc0 = (QUARTERS + DIMES + NICKLES + PENNIES) - coffe_price 
+    calc = round(calc0, 3)
+    if calc < 0:
+        return ("You did not insert enough money :( ")
+    return (f"Your change is ${calc}.\nHere is your {choose_coffe}, enjoy!")
+
+
+# print(calculator(quarters,dimes,nickles,pennies))
+
+def type():
+    coffe_type = MENU[choose_coffe]
+    return coffe_type
+
+# your_coffe = type()
+
+
+
+def ingredients_for_coffe(coffe):
+    cost = coffe["cost"]
+    money_earned = 0
+    money_earned += cost
+
+
+
+
+
+    # ingredients = coffe["ingredients"]
+    # for stuff in ingredients:
+    #     ing = (ingredients[stuff])
+    #     list = []
+    #     list.append
+    #     if stuff == "milk":
+    #         milk = (ingredients[stuff])
+    #         mlijeko = (f'{milk}ml of milk')
+
+    #         if stuff == "water":
+
+    #             water = (ingredients[stuff])
+    #             voda = (f'{water}ml of water')
+
+    #         elif stuff == "coffee":
+
+    #             coffee = (ingredients[stuff])
+    #             kafa = (f'{coffee}g of coffee')
+    #             return f"{choose_coffe} consist of {mlijeko}, {voda}, {kafa}, and costs ${cost}"
+
+
+    #     if stuff != "milk":
+    #         if stuff == "water":
+    #             water = int(ingredients[stuff]) - 50
+    #             voda = (f'{water}ml of water') 
+
+    #         elif stuff == "coffee":
+
+    #             coffee = int(ingredients[stuff])-18
+    #             kafa = (f'{coffee}g of coffee')
+    #             return 
+                
+
+
+
+
+money_earned = 0
+enough_ingredients = True
+coffee_on = True
+while enough_ingredients == True:
+  
+    choose_coffe = input("What coffe would you like? Espresso, Latte or Cappuccino? \n").lower()
+    
+    if choose_coffe == "report":
+        print(f'Coffe: {resources["coffee"]}g')
+        print(f'Milk: {resources["milk"]}ml')
+        print(f'Water: {resources["water"]}ml')
+        print(f'Money: ${money_earned}')
+        
+
+    elif choose_coffe == "espresso" or "latte" or "cappuccino":
+        
+        your_coffe = type()
+        
+        if choose_coffe == "espresso" and resources["coffee"] >= 18 and resources["water"] >= 50:
+            money_earned += 1.5
+            resources["coffee"] = resources["coffee"] - 18
+            resources["water"] = resources['water'] - 50
+            print("Please insert coins.")
+            quarters = int(input("How many quarters?: "))
+            dimes = int(input("How many dimes?: "))
+            nickles = int(input("How many nickles?: "))
+            pennies = int(input("How many pennies?: "))
+            print(calculator(quarters,dimes,nickles,pennies))
+        
+        
+                
+    
+        elif choose_coffe == "latte" and resources["coffee"] >= 24 and resources["water"] >= 200 and resources["milk"] >= 150:
+            money_earned += 2.5
+            resources["coffee"] = resources["coffee"] - 24
+            resources["water"] = resources['water'] - 200
+            resources["milk"] = resources['milk'] - 150
+            print("Please insert coins.")
+            quarters = int(input("How many quarters?: "))
+            dimes = int(input("How many dimes?: "))
+            nickles = int(input("How many nickles?: "))
+            pennies = int(input("How many pennies?: "))
+            print(calculator(quarters,dimes,nickles,pennies))
+        
+                
+        
+        elif choose_coffe == "cappuccino" and resources["coffee"] >= 24 and resources["water"] >= 250 and resources["milk"] >= 100:
+            money_earned += 3.0
+            resources["coffee"] = resources["coffee"] - 24
+            resources["water"] = resources['water'] - 250
+            resources["milk"] = resources['milk'] - 100
+            print("Please insert coins.")
+            quarters = int(input("How many quarters?: "))
+            dimes = int(input("How many dimes?: "))
+            nickles = int(input("How many nickles?: "))
+            pennies = int(input("How many pennies?: "))
+            print(calculator(quarters,dimes,nickles,pennies))
+
+        elif resources["coffee"] < 18 or resources["water"] < 50:
+                enough_ingredients = False
+                print("There is not enough ingredients for any coffee :(")
+                
+
+        else:
+            print("There is not enough ingredients for this coffee try something else")
+
+        
+       
+            
+            
+
+                    
+
+                
